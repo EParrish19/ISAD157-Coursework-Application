@@ -42,7 +42,7 @@
             "Friendships",
             "Work",
             "Education",
-            "City"});
+            "Messages"});
             this.Cbox_Data_Choice.Location = new System.Drawing.Point(234, 12);
             this.Cbox_Data_Choice.Name = "Cbox_Data_Choice";
             this.Cbox_Data_Choice.Size = new System.Drawing.Size(745, 21);
