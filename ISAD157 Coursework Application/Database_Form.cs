@@ -51,7 +51,7 @@ namespace ISAD157_Coursework_Application
             }
             else if (Cbox_Data_Choice.SelectedIndex == 1)
             {
-                //If Users is selected in the combo box
+                //If Friendships is selected in the combo box
 
                 //String to use for connecting to Database
                 string connectionString = "SERVER=" + Connection.SQLServer + ";" +
@@ -79,7 +79,7 @@ namespace ISAD157_Coursework_Application
             }
             else if (Cbox_Data_Choice.SelectedIndex == 2)
             {
-                //If Users is selected in the combo box
+                //If Work is selected in the combo box
 
                 //String to use for connecting to Database
                 string connectionString = "SERVER=" + Connection.SQLServer + ";" +
@@ -107,7 +107,7 @@ namespace ISAD157_Coursework_Application
             }
             else if (Cbox_Data_Choice.SelectedIndex == 3)
             {
-                //If Users is selected in the combo box
+                //If Education is selected in the combo box
 
                 //String to use for connecting to Database
                 string connectionString = "SERVER=" + Connection.SQLServer + ";" +
@@ -136,7 +136,7 @@ namespace ISAD157_Coursework_Application
             }
             else if (Cbox_Data_Choice.SelectedIndex == 4)
             {
-                //If Users is selected in the combo box
+                //If Messages is selected in the combo box
 
                 //String to use for connecting to Database
                 string connectionString = "SERVER=" + Connection.SQLServer + ";" +
@@ -148,6 +148,152 @@ namespace ISAD157_Coursework_Application
                 using (MySqlConnection connection = new MySqlConnection(connectionString))
                 {
                     string query = "SELECT * FROM isad157_eparrish.facebook_messages";
+
+                    connection.Open();
+
+                    MySqlCommand cmd = new MySqlCommand(query, connection);
+
+                    MySqlDataAdapter sqlDA = new MySqlDataAdapter(cmd);
+                    DataTable UserData = new DataTable();
+                    sqlDA.Fill(UserData);
+
+                    DataGrid_QueryResult.DataSource = UserData;
+                    connection.Close();
+                }
+            }
+        }
+
+        private void BtnSearch_Click(object sender, EventArgs e)
+        {
+            if (Cbox_Data_Choice.SelectedIndex == 0)
+            {
+                //If Users is selected in the combo box
+
+                //String to use for connecting to Database
+                string connectionString = "SERVER=" + Connection.SQLServer + ";" +
+                    "DATABASE=" + Connection.Database + ";" + "UID=" +
+                    Connection.user_name + ";" + "PASSWORD=" +
+                    Connection.Password + ";" + "SslMode=" +
+                    Connection.SSL + ";";
+
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    string query = "SELECT * FROM isad157_eparrish.facebook_users Where isad157_eparrish.facebook_users.UserID = '" + TxtBoxFilter.Text + "'";
+
+                    connection.Open();
+
+                    MySqlCommand cmd = new MySqlCommand(query, connection);
+
+                    MySqlDataAdapter sqlDA = new MySqlDataAdapter(cmd);
+                    DataTable UserData = new DataTable();
+                    sqlDA.Fill(UserData);
+
+                    DataGrid_QueryResult.DataSource = UserData;
+                    connection.Close();
+                }
+
+            }
+            else if (Cbox_Data_Choice.SelectedIndex == 1)
+            {
+                //If Friendships is selected in the combo box
+
+                //String to use for connecting to Database
+                string connectionString = "SERVER=" + Connection.SQLServer + ";" +
+                    "DATABASE=" + Connection.Database + ";" + "UID=" +
+                    Connection.user_name + ";" + "PASSWORD=" +
+                    Connection.Password + ";" + "SslMode=" +
+                    Connection.SSL + ";";
+
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    string query = "SELECT * FROM isad157_eparrish.facebook_friendships WHERE isad157_eparrish.facebook_friendships.FirstUserID = '" + TxtBoxFilter.Text + "' OR isad157_eparrish.facebook_friendships.SecondUserID = '" +
+                        TxtBoxFilter.Text + "'";
+
+                    connection.Open();
+
+                    MySqlCommand cmd = new MySqlCommand(query, connection);
+
+                    MySqlDataAdapter sqlDA = new MySqlDataAdapter(cmd);
+                    DataTable UserData = new DataTable();
+                    sqlDA.Fill(UserData);
+
+                    DataGrid_QueryResult.DataSource = UserData;
+                    connection.Close();
+                }
+
+            }
+            else if (Cbox_Data_Choice.SelectedIndex == 2)
+            {
+                //If Work is selected in the combo box
+
+                //String to use for connecting to Database
+                string connectionString = "SERVER=" + Connection.SQLServer + ";" +
+                    "DATABASE=" + Connection.Database + ";" + "UID=" +
+                    Connection.user_name + ";" + "PASSWORD=" +
+                    Connection.Password + ";" + "SslMode=" +
+                    Connection.SSL + ";";
+
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    string query = "SELECT * FROM isad157_eparrish.facebook_work WHERE isad157_eparrish.facebook_work.UserID = '" + TxtBoxFilter.Text + "'";
+
+                    connection.Open();
+
+                    MySqlCommand cmd = new MySqlCommand(query, connection);
+
+                    MySqlDataAdapter sqlDA = new MySqlDataAdapter(cmd);
+                    DataTable UserData = new DataTable();
+                    sqlDA.Fill(UserData);
+
+                    DataGrid_QueryResult.DataSource = UserData;
+                    connection.Close();
+                }
+
+            }
+            else if (Cbox_Data_Choice.SelectedIndex == 3)
+            {
+                //If Education is selected in the combo box
+
+                //String to use for connecting to Database
+                string connectionString = "SERVER=" + Connection.SQLServer + ";" +
+                    "DATABASE=" + Connection.Database + ";" + "UID=" +
+                    Connection.user_name + ";" + "PASSWORD=" +
+                    Connection.Password + ";" + "SslMode=" +
+                    Connection.SSL + ";";
+
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    string query = "SELECT * FROM isad157_eparrish.facebook_education WHERE isad157_eparrish.facebook_education.UserID = '" + TxtBoxFilter.Text + "'";
+
+                    connection.Open();
+
+                    MySqlCommand cmd = new MySqlCommand(query, connection);
+
+                    MySqlDataAdapter sqlDA = new MySqlDataAdapter(cmd);
+                    DataTable UserData = new DataTable();
+                    sqlDA.Fill(UserData);
+
+                    DataGrid_QueryResult.DataSource = UserData;
+                    connection.Close();
+                }
+
+
+            }
+            else if (Cbox_Data_Choice.SelectedIndex == 4)
+            {
+                //If Messages is selected in the combo box
+
+                //String to use for connecting to Database
+                string connectionString = "SERVER=" + Connection.SQLServer + ";" +
+                    "DATABASE=" + Connection.Database + ";" + "UID=" +
+                    Connection.user_name + ";" + "PASSWORD=" +
+                    Connection.Password + ";" + "SslMode=" +
+                    Connection.SSL + ";";
+
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    string query = "SELECT * FROM isad157_eparrish.facebook_messages WHERE isad157_eparrish.facebook_messages.FirstUserID = '" + TxtBoxFilter.Text + "' " + "OR isad157_eparrish.facebook_messages.SecondUserID = '" + 
+                        TxtBoxFilter.Text + "'";
 
                     connection.Open();
 
